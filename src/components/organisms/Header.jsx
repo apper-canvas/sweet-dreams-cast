@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
-import Button from "@/components/atoms/Button";
 import SearchBar from "@/components/molecules/SearchBar";
+import Button from "@/components/atoms/Button";
 import { useCart } from "@/hooks/CartProvider";
 
 const Header = () => {
@@ -69,12 +69,12 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop Actions */}
+{/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
+onClick={() => setIsSearchOpen(!isSearchOpen)}
               className="p-2"
             >
               <ApperIcon name="Search" size={20} />
@@ -92,19 +92,8 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+{/* Mobile menu button */}
           <div className="lg:hidden flex items-center space-x-2">
-            <Link to="/cart" className="relative">
-              <Button variant="ghost" size="sm" className="p-2">
-                <ApperIcon name="ShoppingCart" size={20} />
-                {getCartItemCount() > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {getCartItemCount()}
-                  </span>
-                )}
-              </Button>
-            </Link>
-            
             <Button
               variant="ghost"
               size="sm"
@@ -116,20 +105,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Search Bar */}
-        <AnimatePresence>
-          {isSearchOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="pb-4"
-            >
-              <SearchBar onSearch={handleSearch} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+</div>
 
       {/* Mobile menu */}
       <AnimatePresence>
@@ -140,7 +116,7 @@ const Header = () => {
             exit={{ opacity: 0, y: -20 }}
             className="lg:hidden border-t bg-white"
           >
-            <div className="px-4 py-2 space-y-1">
+<div className="px-4 py-2 space-y-1">
               <div className="pb-2">
                 <SearchBar onSearch={handleSearch} />
               </div>
