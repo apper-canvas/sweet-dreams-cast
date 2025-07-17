@@ -45,6 +45,11 @@ const baseStyles = "inline-flex items-center justify-center rounded-lg font-medi
       {...props}
     >
       {children}
+{children}
     </button>
   );
 });
+
+Button.displayName = "Button";
+
+export default Button;
