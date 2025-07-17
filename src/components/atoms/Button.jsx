@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { cn } from "@/utils/cn";
 
 const Button = React.forwardRef(({ 
@@ -6,6 +6,7 @@ const Button = React.forwardRef(({
   variant = "primary", 
   size = "default", 
   children, 
+  asChild = false,
   ...props 
 }, ref) => {
   const variants = {
@@ -21,12 +22,22 @@ const Button = React.forwardRef(({
     lg: "px-8 py-4 text-lg"
   };
 
+const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed";
+
+  if (asChild) {
+    return React.cloneElement(children, {
+      className: cn(baseStyles, variants[variant], sizes[size], className, children.props.className),
+      ref,
+      ...props,
+      ...children.props,
+    });
+  }
+
   return (
     <button
       ref={ref}
       className={cn(
-        "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200",
-        "hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed",
+        baseStyles,
         variants[variant],
         sizes[size],
         className
@@ -37,7 +48,3 @@ const Button = React.forwardRef(({
     </button>
   );
 });
-
-Button.displayName = "Button";
-
-export default Button;
